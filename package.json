@@ -6,6 +6,7 @@
   "scripts": {
     "test-ui": "cypress open --browser chrome",
     "test": "cypress run --browser chrome",
+    "backend": "node server.js",
     "make-steps": "node _auto-generate-step-definitions.js"
   },
   "cypress-cucumber-preprocessor": {

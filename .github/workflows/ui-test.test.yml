@@ -1,0 +1,41 @@
+name: API Tests
+
+on: 
+  push:
+  pull_request:
+    branches:
+      [dev,main]
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version}}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version}}
+      - name: npm install
+        run: npm ci
+      - name: start mysql
+        run: sudo service mysql start
+      - name: change password
+        run: mysqladmin --user=root --password=root password "user"
+      - name: restart mysql 
+        run: sudo service mysql restart
+      - name: test mysql status
+        run: service mysql status
+      - name: seed to mysql
+        run: npm run seed-db
+      - name: fire up backend 
+        run: nohup npm run backend & exit
+      # - name: newman test
+      #   run: npm test
+      - name: gui testing
+        run: npm test
+        
