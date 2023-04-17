@@ -22,16 +22,6 @@ jobs:
           node-version: ${{ matrix.node-version}}
       - name: npm install
         run: npm ci
-      - name: start mysql
-        run: sudo service mysql start
-      - name: change password
-        run: mysqladmin --user=root --password=root password "user"
-      - name: restart mysql 
-        run: sudo service mysql restart
-      - name: test mysql status
-        run: service mysql status
-      - name: seed to mysql
-        run: npm run seed-db
       - name: fire up backend 
         run: nohup npm run backend & exit
       # - name: newman test
