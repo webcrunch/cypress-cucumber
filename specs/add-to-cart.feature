@@ -18,26 +18,9 @@ Feature: Add to cart
       | Golvlampa  | 2        |
       | Golvlampa  | 3        |
 
-# Scenario: Adding "<quantity>" "<product>" to the cart
-#   Given That the user wants to buy x number of lamps
-#   And that I have searched for "<product>"
-#   When I click the buy button "<quantity>" time
-#   Then "<quantity>" "<product>" should be added to the cart
+  Scenario: calculating the price for "3" "Bordslampor"
+    Given That the user search for "Bordslampa"
+    And Added the product to the cart "3" times
+    Then the price will be correct
 
-# Scenario: Adding "2" "Bordslampa" to the cart
-#   Given That the user wants to buy x number of lamps
-#   And that I have searched for "Bordslampa"
-#   When I click the buy button "2" time
-#   Then "2" "Bordslampa" should be added to the cart
 
-# Scenario: Adding "1" "Golvlampa" to the cart
-#   Given That the user wants to buy x number of lamps
-#   And that I have searched for "Golvlampa"
-#   When I click the buy button "1" time
-#   Then "1" "Golvlampa" should be added to the cart
-
-# Scenario: Adding "3" "Golvlampa" to the cart
-#   Given That the user wants to buy x number of lamps
-#   And that I have searched for "Golvlampa"
-#   When I click the buy button "3" time
-#   Then "3" "Golvlampa" should be added to the cart
