@@ -36,8 +36,8 @@ jobs:
     steps:
       - name: Wait for tests to succeed
         uses: lewagon/wait-on-check-action@v1.3.1
-      with:
-        ref: master
+        with:
+          ref: master
         check-name: test
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         wait-interval: 20
