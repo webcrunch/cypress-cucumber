@@ -41,5 +41,24 @@ jobs:
         check-name: test
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         wait-interval: 20
+        - name: executing remote ssh commands using password
+        # using ssh-action from appleboy
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          # using repository secrets
+          # for login to your server
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          # commands to run on your server
+          # below just an example
+          # can be more (like restarting pm2)
+          script: |
+            cd /var/www/nodehill-home-page
+            git pull
+            npm run build --if-present
+
+
 
 
