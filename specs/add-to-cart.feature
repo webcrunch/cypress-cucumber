@@ -1,4 +1,4 @@
-Feature: Add to cart
+Feature: Add to cart and to verify the price
   As a user I want to be able to add products
   to the cart, so that I can buy them.
 
@@ -14,6 +14,7 @@ Feature: Add to cart
     Examples:
       | product    | quantity |
       | Bordslampa | 1        |
+      | Bordslampa | 2        |
       | Golvlampa  | 1        |
       | Golvlampa  | 2        |
       | Golvlampa  | 3        |
@@ -23,4 +24,21 @@ Feature: Add to cart
     And Added the product to the cart "3" times
     Then the price will be correct
 
+
+  Scenario: calculating the price for "8" "Golvlampa"
+    Given That the user search for "Golvlampa"
+    And Added the product to the cart "8" times
+    Then the price will be correct
+
+
+  Scenario: calculating the price for "1" "Lampett"
+    Given That the user search for "Lampett"
+    And Added the product to the cart "1" times
+    Then the price will be correct
+
+
+  Scenario: calculating the price for "600" "Spotlight"
+    Given That the user search for "Spotlight"
+    And Added the product to the cart "600" times
+    Then the price will be correct
 

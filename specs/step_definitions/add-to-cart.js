@@ -66,4 +66,14 @@ Given('Added the product to the cart {string} times', (clickCount) => {
 
 Then('the price will be correct', () => {
   // TODO: implement step
+  let collected = [];
+  cy.get('#cart li')
+    .contains(searchName)
+    .find('span').each(span => {
+      collected.push(+span.text().replace(/\D/g, ''));
+      if (collected.length === 3) {
+        let [perPiece, quantity, rowSum] = collected;
+        expect(perPiece * quantity).to.equal(rowSum);
+      }
+    });
 });
