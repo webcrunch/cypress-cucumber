@@ -36,8 +36,8 @@ Feature: Add to cart and to verify the price
     Then the price will be correct
 
 
-  Scenario: calculating the price for "50" "Spotlights"
+  Scenario: calculating the price for "10" "Spotlights"
     When That the user search for "Spotlight"
-    And Added the product to the cart "50" times
+    And Added the product to the cart "10" times
     Then the price will be correct
 

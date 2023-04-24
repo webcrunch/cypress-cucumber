@@ -18,13 +18,12 @@ Given('That i need to be on the first page', () => {
 
 
 When('that i have searched for {string}', (product) => {
-  searchedFor = searchTerm;
-  cy.get('#search').type(searchTerm);
+  searchedFor = product;
+  cy.get('#search').type(product);
 });
 
 When('I click the buy button {string} time', (clickCount) => {
   for (let i = 1; i <= +clickCount; i++) {
-    // cy.log("searchedFor", searchedFor);
     // find h2 that contains the product we have searched for
     cy.get('.product h2').contains(searchedFor)
       // find its product div
@@ -53,7 +52,6 @@ When('That the user search for {string}', (searchTerm) => {
 
 When('Added the product to the cart {string} times', (clickCount) => {
   for (let i = 1; i <= +clickCount; i++) {
-    // cy.log("searchedFor", searchName);
     // find h2 that contains the product we have searched for
     cy.get('.product h2').contains(searchName)
       // find its product div
