@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
     branches:
-      [dev,main]
+      [main]
 
 jobs: 
   build:
@@ -29,3 +29,42 @@ jobs:
       - name: gui testing
         run: npm test
         
+# main Dev
+  deploy:
+
+      # demand that the  test job succeed
+      # before running deploy
+      needs: [build]
+
+      # only run this job if the environment protection rules
+      # (a reviewers approves and we are on the dev branch)
+      # are fulfilled (COMMENTED OUT RIGHT)
+      # environment: "Dev server"
+
+      runs-on: ubuntu-latest
+      steps:
+       - name: Wait for tests to succeed
+        uses: lewagon/wait-on-check-action@v1.3.1
+        with:
+          ref: master
+          check-name: test
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          wait-interval: 20
+        - name: executing remote ssh commands using password
+          # using ssh-action from appleboy
+          uses: appleboy/ssh-action@v0.1.10
+          with:
+            # using repository secrets
+            # for login to your server
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            port: ${{ secrets.PORT }}
+            # commands to run on your server
+            # below just an example
+            # can be more (like restarting pm2)
+            script: |
+              cd /var/www/nodehill-home-page
+              git pull
+              npm run build --if-present
+
