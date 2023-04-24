@@ -16,7 +16,8 @@ Given('That i need to be on the first page', () => {
   cy.visit('/');
 });
 
-Given('that i have searched for {string}', (searchTerm) => {
+
+When('that i have searched for {string}', (product) => {
   searchedFor = searchTerm;
   cy.get('#search').type(searchTerm);
 });
@@ -45,12 +46,12 @@ Then('{string} {string} should be added to the cart', (quantity, productName) =>
     .should('have.length', 1);
 });
 
-Given('That the user search for {string}', (searchTerm) => {
+When('That the user search for {string}', (searchTerm) => {
    searchName = searchTerm;
   cy.get('#search').type(searchTerm);
 });
 
-Given('Added the product to the cart {string} times', (clickCount) => {
+When('Added the product to the cart {string} times', (clickCount) => {
   for (let i = 1; i <= +clickCount; i++) {
     // cy.log("searchedFor", searchName);
     // find h2 that contains the product we have searched for
