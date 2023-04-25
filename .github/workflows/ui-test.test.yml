@@ -1,7 +1,7 @@
 name: API Tests
 
 on: 
-  push:
+  # push:
   pull_request:
     branches:
       [main]
@@ -30,7 +30,7 @@ jobs:
         run: npm test
 
   deploy:
-
+    if: github.event.review.state == 'approved'
     # demand that the  test job succeed
     # before running deploy
     needs: [tests]
@@ -44,6 +44,13 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+    - name: Wait for tests to succeed
+      uses: lewagon/wait-on-check-action@v1.3.1
+    with:
+      ref: main
+      check-name: test
+      repo-token: ${{ secrets.GITHUB_TOKEN }}
+      wait-interval: 20
     - name: executing remote ssh commands using password
       # using ssh-action from appleboy
       uses: appleboy/ssh-action@v0.1.10
