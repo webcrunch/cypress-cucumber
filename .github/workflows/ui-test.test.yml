@@ -28,19 +28,15 @@ jobs:
       - name: gui testing
         run: npm test
 
-  deploy:
+ 
 
-    # demand that the  test job succeed
-    # before running deploy
-    needs: [tests]
+on:
+  pull_request_review:
+  types: [submitted]
 
-    # only run this job if the environment protection rules
-    # (a reviewers approves and we are on the dev branch)
-    # are fulfilled
-    # TO BE CHECKD BY THOMAS:
-    # FOR NOW DEPLOY AUTOMATICALLY
-    # environment: "Main deploy"
-
+  jobs:
+    build:
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     steps:
     - name: executing remote ssh commands using password
@@ -67,36 +63,4 @@ jobs:
           npm run build --if-present
           echo "restarting app in pm2"
           pm2 restart lumia
-# # main Dev
-#   deploy:
-#     needs: [build]
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Wait for tests to succeed
-#         uses: lewagon/wait-on-check-action@v1.3.1
-#         with:
-#           ref: master
-#       check-name: test
-#       repo-token: ${{ secrets.GITHUB_TOKEN }}
-#       wait-interval: 20
-#       - name: executing remote ssh commands using password
-#       # using ssh-action from appleboy
-#       uses: appleboy/ssh-action@v0.1.10
-#       with:
-#           # using repository secrets
-#           # for login to your server
-#         host: ${{ secrets.HOST }}
-#         username: ${{ secrets.USERNAME }}
-#         password: ${{ secrets.PASSWORD }}
-#         port: ${{ secrets.PORT }}
-#           # commands to run on your server
-#           # below just an example
-#           # can be more (like restarting pm2)
-#         script: |
-#           cd /var/www/nodehill-home-page
-#           git pull
-#           npm run build --if-present
-
-
-
 
