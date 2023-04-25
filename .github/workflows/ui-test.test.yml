@@ -33,12 +33,12 @@ on:
   pull_request_review:
     types: [submitted]
 
-  jobs:
-    build:
-    if: github.event.review.state == 'approved'
-    runs-on: ubuntu-latest
+jobs:
+  build:
+  if: github.event.review.state == 'approved'
+  runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+      - name: executing remote ssh commands using password
       # using ssh-action from appleboy
       uses: appleboy/ssh-action@v0.1.10
       with:
