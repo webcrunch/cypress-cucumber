@@ -29,7 +29,6 @@ jobs:
         run: npm test
 
  
-name: Dev Workflow - Test and check thing
 on:
   pull_request_review:
     types: [submitted]
