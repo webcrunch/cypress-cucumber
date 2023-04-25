@@ -35,8 +35,9 @@ on:
 
 jobs:
   build:
-  if: github.event.review.state == 'approved'
-  runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    
     steps:
       - name: executing remote ssh commands using password
       # using ssh-action from appleboy
