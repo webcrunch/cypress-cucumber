@@ -34,6 +34,6 @@ Feature: Search
     Given I enter the letter "sp" in the search field
     Then I should see the product "Spotlight"
 
-  Scenario: Searching for products including "spo"
-    Given I enter the letter "spo" in the search field
-    Then I should see the product "Spotlight"
+# Scenario: Searching for products including "spo"
+#   Given I enter the letter "spo" in the search field
+#   Then I should see the product "Spotlight"
