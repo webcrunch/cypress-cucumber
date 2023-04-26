@@ -1,16 +1,12 @@
 name: API build
 
 on:
-  # pull_request_review:
-  #   types: [submitted]
   pull_request:
-    types:
-      - closed
-
+    [closed]
 
 jobs:
   build:
-    # if: github.event.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
     
     steps:
