@@ -1,4 +1,4 @@
- name: API build
+name: API build
 
 on:
   pull_request_review:
