@@ -33,3 +33,4 @@ Feature: Search
   Scenario: Searching for products including "sp"
     Given I enter the letter "sp" in the search field
     Then I should see the product "Spotlight"
+
