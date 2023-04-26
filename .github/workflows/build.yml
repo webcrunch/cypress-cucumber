@@ -11,11 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: executing remote ssh commands using password
+      - name: wait for the merge to get to the server 
       # using ssh-action from appleboy
         uses: jakejarvis/wait-action@master
         with:
           time: '60s'
+      - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v0.1.10
         with:
           # using repository secrets
