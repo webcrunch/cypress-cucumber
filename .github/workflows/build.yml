@@ -2,7 +2,7 @@ name: API build
 
 on:
   pull_request:
-    [closed]
+    - closed
 
 jobs:
   build:
@@ -12,6 +12,9 @@ jobs:
     steps:
       - name: executing remote ssh commands using password
       # using ssh-action from appleboy
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '60s'
         uses: appleboy/ssh-action@v0.1.10
         with:
           # using repository secrets
