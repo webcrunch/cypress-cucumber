@@ -1,3 +1,4 @@
+# hej
 Feature: Search
   As a user I want to able to search for products
   using the search field.
