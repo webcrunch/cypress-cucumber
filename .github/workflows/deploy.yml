@@ -1,12 +1,13 @@
-name: API build
+name: API deploy
 
 on:
   pull_request:
     types: [closed]
+    branches: [main]
 
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     
     steps:
