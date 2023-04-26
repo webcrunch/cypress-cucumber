@@ -23,17 +23,17 @@ jobs:
           # commands to run on your server
           # below just an example
           # can be more (like restarting pm2)
-        script: |
-          echo "cd to correct folder"
-          cd /var/www/cypress-cucumber
-          echo "git pull"
-          git pull
-          echo "npm install"
-          npm install
-          echo "running build if present"
-          npm run build --if-present
-          echo "restarting app in pm2"
-          pm2 restart lumia
+          script: |
+            echo "cd to correct folder"
+            cd /var/www/cypress-cucumber
+            echo "git pull"
+            git pull
+            echo "npm install"
+            npm install
+            echo "running build if present"
+            npm run build --if-present
+            echo "restarting app in pm2"
+            pm2 restart lumia
 
 
 # on:
