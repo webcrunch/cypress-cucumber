@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test-ui": "cypress open --browser chrome",
-    "test": "cypress run --browser electron",
+    "test": "cypress run ",
     "backend": "node server.js",
     "make-steps": "node _auto-generate-step-definitions.js"
   },
